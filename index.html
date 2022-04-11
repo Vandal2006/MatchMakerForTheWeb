@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+    Author: Henry Gilson
+-->
+<head>
+	<meta charset="UTF-8">
+	<title>MatchmakerForTheWeb 2022</title>
+</head>
+<body>
+	<h1>MatchmakerForTheWeb 2022</h1>
+    <h2>GilsoSoft, Inc</h2>
+	<p><br>This program will find out how compatiable we whuld be as a couple.
+        <br>Please select your level of agreement from the drop down menue for each question
+        <br>At the end of this you will see how comaptiable we are.</h2>
+        <div><a href="mailto:henryjgilson@lewisu.edu">click here to reach out through email if there are any issues</a></p>
+	<label>Is wargame the best game ever made:</label><br />
+	<select id="q1">
+		<option value="5">Strongly Agree</option>
+		<option value="4">Agree</option>
+		<option value="3">Neither agree nor disagree</option>
+		<option value="2">Disagree</option>
+		<option value="1">Strongly Disagree</option>
+	</select>
+	<br /><br />
+	<label>Canada sucks:</label><br />
+	<select id="q2">
+		<option value="5">Strongly Agree</option>
+		<option value="4">Agree</option>
+		<option value="3">Neither agree nor disagree</option>
+		<option value="2">Disagree</option>
+		<option value="1">Strongly Disagree</option>
+	</select>
+	<br /><br />
+	<label>Does abusing your children make them better people:</label><br />
+	<select id="q3">
+		<option value="5">Strongly Agree</option>
+		<option value="4">Agree</option>
+		<option value="3">Neither agree nor disagree</option>
+		<option value="2">Disagree</option>
+		<option value="1">Strongly Disagree</option>
+	</select>
+	<br /><br />
+	<label>Having children seems like a good idea:</label><br />
+	<select id="q4">
+		<option value="5">Strongly Agree</option>
+		<option value="4">Agree</option>
+		<option value="3">Neither agree nor disagree</option>
+		<option value="2">Disagree</option>
+		<option value="1">Strongly Disagree</option>
+	</select>
+	<br /><br />
+	<label>Raising a family of horses whuld be highly enjoyable:</label><br />
+	<select id="q5">
+		<option value="5">Strongly Agree</option>
+		<option value="4">Agree</option>
+		<option value="3">Neither agree nor disagree</option>
+		<option value="2">Disagree</option>
+		<option value="1">Strongly Disagree</option>
+	</select>
+	<br /><br /><br />
+	<button onclick="calculateCompatibility()">Calculate Compatibility</button>
+	<p id="compatibility"></p>
+    <p id="explanation"></p>
+<script>
+console.log("Starting Matchmaker Lite...");
+function calculateCompatibility() {
+	console.log("calculateCompatibility()");
+	const DESIRED_RESPONSE = [
+		5, 
+		1,
+		5,
+        1,
+        5,
+	]
+	const MAX_SCORE = 25;
+	let question1Response = document.getElementById("q1").selectedOptions[0].value;
+	let question2Response = document.getElementById("q2").selectedOptions[0].value;
+	let question3Response = document.getElementById("q3").selectedOptions[0].value;
+	let question4Response = document.getElementById("q4").selectedOptions[0].value;
+	let question5Response = document.getElementById("q5").selectedOptions[0].value;
+	console.log("Question 1 Answers:")
+	console.log(document.getElementById("q1").selectedOptions[0].text);
+	console.log(document.getElementById("q1").selectedOptions[0].value);
+	console.log(question1Response);
+	console.log("Question 2 Answers:");
+	console.log(document.getElementById("q2").selectedOptions[0].text);
+	console.log(document.getElementById("q2").selectedOptions[0].value);
+	console.log(question2Response);
+	console.log("Question 3 Answers:");
+	console.log(document.getElementById("q3").selectedOptions[0].text);
+	console.log(document.getElementById("q3").selectedOptions[0].value);
+	console.log(question3Response);
+    console.log("Question 4 Answers:");
+	console.log(document.getElementById("q4").selectedOptions[0].text);
+	console.log(document.getElementById("q4").selectedOptions[0].value);
+	console.log(question4Response);
+    console.log("Question 5 Answers:");
+	console.log(document.getElementById("q5").selectedOptions[0].text);
+	console.log(document.getElementById("q5").selectedOptions[0].value);
+	console.log(question5Response);
+	let question1Compatibility = 5 - Math.abs(question1Response - DESIRED_RESPONSE[0]);
+	let question2Compatibility = 5 - Math.abs(question2Response - DESIRED_RESPONSE[1]);
+	let question3Compatibility = 5 - Math.abs(question3Response - DESIRED_RESPONSE[2]);
+    let question4Compatibility = 5 - Math.abs(question4Response - DESIRED_RESPONSE[3]);
+    let question5Compatibility = 5 - Math.abs(question5Response - DESIRED_RESPONSE[4]);
+	console.log("c1="+question1Compatibility);
+	console.log("c2="+question2Compatibility);
+	console.log("c3="+question3Compatibility);
+    console.log("c4="+question4Compatibility);
+    console.log("c5="+question5Compatibility);
+	let totalCompatibility = question1Compatibility + question2Compatibility + question3Compatibility + question4Compatibility + question5Compatibility;
+	totalCompatibility *= 100 / MAX_SCORE;
+	totalCompatibility = Math.round(totalCompatibility);
+	console.log("tc="+ totalCompatibility);
+	document.getElementById("compatibility").innerHTML = "Your compatibility is: " + totalCompatibility;
+        if (MAX_SCORE >85){document.getElementById("explanation").innerHTML = "Wow let get married!"
+
+    }
+        else if (MAX_SCORE >26 <84){document.getElementById("explanation").innerHTML = "We should just be friends."
+
+    }
+        else (MAX_SCORE >25);{document.getElementById("explanation").innerHTML = "Sorry this just isnt going to work out..."
+
+    }
+}
+</script>
+</body>
+</html>
